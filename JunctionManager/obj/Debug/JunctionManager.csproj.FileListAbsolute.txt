@@ -1,0 +1,6 @@
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\bin\Debug\JunctionManager.exe.config
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\bin\Debug\JunctionManager.exe
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\bin\Debug\JunctionManager.pdb
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\obj\Debug\JunctionManager.csprojResolveAssemblyReference.cache
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\obj\Debug\JunctionManager.exe
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\JunctionManager\obj\Debug\JunctionManager.pdb
