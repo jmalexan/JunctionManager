@@ -19,14 +19,38 @@ namespace JunctionManager {
                 Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
                 Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
                 Console.Write(System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
-                Console.ReadKey();
                 //Add registery code
             } else {
                 Console.Write(args[0]);
-                if (JunctionPoint.Exists(args[0])) {
+                if (!JunctionPoint.Exists(args[0])) {
                     Console.WriteLine("Stuff");
+                    Console.WriteLine("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2));
+                    CopyFolder(args[0], "D:\\CStorage" + args[0].Substring(2, args[0].Length - 2));
+                    Directory.Delete(args[0], true);
+                    JunctionPoint.Create(args[0], "D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), false);
+                } else {
+                    Console.WriteLine("Things");
+                    JunctionPoint.Delete(args[0]);
+                    CopyFolder("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), args[0]);
+                    Directory.Delete("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), true);
                 }
-                Console.ReadKey();
+            }
+        }
+
+        static public void CopyFolder(string sourceFolder, string destFolder) {
+            if (!Directory.Exists(destFolder))
+                Directory.CreateDirectory(destFolder);
+            string[] files = Directory.GetFiles(sourceFolder);
+            foreach (string file in files) {
+                string name = Path.GetFileName(file);
+                string dest = Path.Combine(destFolder, name);
+                File.Copy(file, dest);
+            }
+            string[] folders = Directory.GetDirectories(sourceFolder);
+            foreach (string folder in folders) {
+                string name = Path.GetFileName(folder);
+                string dest = Path.Combine(destFolder, name);
+                CopyFolder(folder, dest);
             }
         }
     }
