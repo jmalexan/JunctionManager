@@ -17,6 +17,10 @@ namespace JunctionManager {
             if (args.Length == 0) {
                 Console.Write("Testing");
                 Console.ReadKey();
+                Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
+                Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
+                Console.Write(System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
+                Console.ReadKey();
                 //Add registery code
             } else {
                 Console.Write(args[0]);
