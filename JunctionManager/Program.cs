@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Monitor.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +16,6 @@ namespace JunctionManager {
 
         static void Main(string[] args) {
             if (args.Length == 0) {
-                Console.Write("Testing");
-                Console.ReadKey();
                 Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
                 Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
                 Console.Write(System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
@@ -24,10 +23,8 @@ namespace JunctionManager {
                 //Add registery code
             } else {
                 Console.Write(args[0]);
-                using (FileStream fs = File.OpenRead(@args[0])) {
-                    StringBuilder path = new StringBuilder(512);
-                    GetFinalPathNameByHandle(fs.SafeFileHandle.DangerousGetHandle(), path, path.Capacity, 0);
-                    Console.WriteLine(path.ToString());
+                if (JunctionPoint.Exists(args[0])) {
+                    Console.WriteLine("Stuff");
                 }
                 Console.ReadKey();
             }
