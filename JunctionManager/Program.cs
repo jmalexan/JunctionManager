@@ -10,22 +10,8 @@ using System.Threading.Tasks;
 
 namespace JunctionManager {
     class Program {
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        static extern int GetFinalPathNameByHandle(IntPtr handle, [In, Out] StringBuilder path, int bufLen, int flags);
-
         static void Main(string[] args) {
-            if (args.Length == 0) {
-                Console.WriteLine("In order to add an item to the Windows Explorer context menu, this program must add keys to the registry that reference this executable's path");
-                Console.WriteLine("This means that if you ever move this file, you must run it again, to update the path in the registry");
-                Console.WriteLine("Type Y to continue this setup process, or N to close the program");
-                if (Console.ReadLine().ToUpper() == "Y") {
-                    Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
-                    Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
-                    Console.WriteLine("Setup complete! Press any key to exit.");
-                    Console.ReadKey();
-                }
-            } else {
+            if (args.Length > 0) {
                 if (!JunctionPoint.Exists(args[0])) {
                     Console.WriteLine("Moving " + args[0] + " to " + GetOtherDiskPath(args[0]));
                     Console.WriteLine("Type Y to confirm, or anything else to abort");
