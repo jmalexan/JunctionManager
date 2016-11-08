@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JunctionManager", "JunctionManager\JunctionManager.csproj", "{F28C1519-33A5-4ED9-9D3B-C79376B3C053}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup Project1", "AI Setup Project1\AI Setup Project1.aiproj", "{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "JunctionManagerInstaller", "AI Setup Project1\JunctionManagerInstaller.aiproj", "{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

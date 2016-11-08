@@ -12,7 +12,7 @@
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
     <AssemblyName>AI Setup Project1</AssemblyName>
-    <Name>AI Setup Project1</Name>
+    <Name>JunctionManagerInstaller</Name>
     <RootNamespace>AI Setup Project1</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'All' ">

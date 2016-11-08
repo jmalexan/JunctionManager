@@ -1,11 +1,18 @@
 ﻿using Monitor.Core.Utilities;
 using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace JunctionManager {
     class Program {
+
+        [STAThread]
         static void Main(string[] args) {
-            if (args.Length > 0) {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            if (args.Length == 0) {
+                Application.Run(new ConfigurationForm());
+            } else {
                 if (!JunctionPoint.Exists(args[0])) {
                     Console.WriteLine("Moving " + args[0] + " to " + GetOtherDiskPath(args[0]));
                     Console.WriteLine("Type Y to confirm, or anything else to abort");
@@ -15,19 +22,20 @@ namespace JunctionManager {
                         JunctionPoint.Create(args[0], GetOtherDiskPath(args[0]), false);
                     }
                 } else {
-                    Console.WriteLine("Moving " + GetOtherDiskPath(args[0]) + " to " + args[0]);
+                    string target = JunctionPoint.GetTarget(args[0]);
+                    Console.WriteLine("Moving " + target + " to " + args[0]);
                     Console.WriteLine("Type Y to confirm, or anything else to abort");
                     if (Console.ReadLine().ToUpper() == "Y") {
                         JunctionPoint.Delete(args[0]);
-                        CopyFolder(GetOtherDiskPath(args[0]), args[0]);
-                        Directory.Delete(GetOtherDiskPath(args[0]), true);
+                        CopyFolder(target, args[0]);
+                        Directory.Delete(target, true);
                     }
                 }
             }
         }
 
         static private String GetOtherDiskPath(String path) {
-            return "D:\\CStorage" + path.Substring(2, path.Length - 2);
+            return Properties.Settings.Default.StorageLocation + path.Substring(2, path.Length - 2);
         }
 
         static public void CopyFolder(string sourceFolder, string destFolder) {

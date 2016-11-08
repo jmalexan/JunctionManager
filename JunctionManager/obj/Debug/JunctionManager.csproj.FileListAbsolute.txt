@@ -10,3 +10,5 @@ C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\obj\Debug\J
 C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\bin\Debug\JunctionManager.exe
 C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\bin\Debug\JunctionManager.pdb
 C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\obj\Debug\JunctionManager.csprojResolveAssemblyReference.cache
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\obj\Debug\JunctionManager.csproj.GenerateResource.Cache
+C:\Users\notdi\Documents\Programming\JunctionManager\JunctionManager\obj\Debug\JunctionManager.ConfigurationForm.resources
