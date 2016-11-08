@@ -16,25 +16,38 @@ namespace JunctionManager {
 
         static void Main(string[] args) {
             if (args.Length == 0) {
-                Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
-                Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
-                Console.Write(System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
-                //Add registery code
+                Console.WriteLine("In order to add an item to the Windows Explorer context menu, this program must add keys to the registry that reference this executable's path");
+                Console.WriteLine("This means that if you ever move this file, you must run it again, to update the path in the registry");
+                Console.WriteLine("Type Y to continue this setup process, or N to close the program");
+                if (Console.ReadLine().ToUpper() == "Y") {
+                    Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager", "", "Switch Drives");
+                    Registry.SetValue("HKEY_CLASSES_ROOT\\Directory\\shell\\JManager\\command", "", System.Reflection.Assembly.GetEntryAssembly().Location + " \"%1\"");
+                    Console.WriteLine("Setup complete! Press any key to exit.");
+                    Console.ReadKey();
+                }
             } else {
-                Console.Write(args[0]);
                 if (!JunctionPoint.Exists(args[0])) {
-                    Console.WriteLine("Stuff");
-                    Console.WriteLine("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2));
-                    CopyFolder(args[0], "D:\\CStorage" + args[0].Substring(2, args[0].Length - 2));
-                    Directory.Delete(args[0], true);
-                    JunctionPoint.Create(args[0], "D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), false);
+                    Console.WriteLine("Moving " + args[0] + " to " + GetOtherDiskPath(args[0]));
+                    Console.WriteLine("Type Y to confirm, or anything else to abort");
+                    if (Console.ReadLine().ToUpper() == "Y") {
+                        CopyFolder(args[0], GetOtherDiskPath(args[0]));
+                        Directory.Delete(args[0], true);
+                        JunctionPoint.Create(args[0], GetOtherDiskPath(args[0]), false);
+                    }
                 } else {
-                    Console.WriteLine("Things");
-                    JunctionPoint.Delete(args[0]);
-                    CopyFolder("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), args[0]);
-                    Directory.Delete("D:\\CStorage" + args[0].Substring(2, args[0].Length - 2), true);
+                    Console.WriteLine("Moving " + GetOtherDiskPath(args[0]) + " to " + args[0]);
+                    Console.WriteLine("Type Y to confirm, or anything else to abort");
+                    if (Console.ReadLine().ToUpper() == "Y") {
+                        JunctionPoint.Delete(args[0]);
+                        CopyFolder(GetOtherDiskPath(args[0]), args[0]);
+                        Directory.Delete(GetOtherDiskPath(args[0]), true);
+                    }
                 }
             }
+        }
+
+        static private String GetOtherDiskPath(String path) {
+            return "D:\\CStorage" + path.Substring(2, path.Length - 2);
         }
 
         static public void CopyFolder(string sourceFolder, string destFolder) {
