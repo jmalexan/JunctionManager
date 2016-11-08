@@ -1,12 +1,6 @@
-﻿using Microsoft.Win32;
-using Monitor.Core.Utilities;
+﻿using Monitor.Core.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JunctionManager {
     class Program {
