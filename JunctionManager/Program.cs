@@ -18,6 +18,9 @@ namespace JunctionManager {
         }
 
         public static void MoveWithJunction(string path) {
+            if (Directory.Exists(Program.GetOtherDiskPath(path))) {
+                Directory.Delete(Program.GetOtherDiskPath(path), true);
+            }
             Program.CopyFolder(path, Program.GetOtherDiskPath(path));
             Directory.Delete(path, true);
             JunctionPoint.Create(path, Program.GetOtherDiskPath(path), false);
