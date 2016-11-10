@@ -62,7 +62,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(13, 218);
-            this.progressBar1.MarqueeAnimationSpeed = 400;
+            this.progressBar1.MarqueeAnimationSpeed = 20;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(294, 23);
             this.progressBar1.TabIndex = 3;
@@ -77,7 +77,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "TransferForm";
-            this.Text = "TransferForm";
+            this.Text = "Junction Manager";
             this.Load += new System.EventHandler(this.TransferForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

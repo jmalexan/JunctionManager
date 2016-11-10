@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,20 +26,16 @@ namespace JunctionManager {
 
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private async void button2_Click(object sender, EventArgs e) {
             progressBar1.Style = ProgressBarStyle.Marquee;
             if (!JunctionPoint.Exists(path)) {
-                Program.CopyFolder(path, Program.GetOtherDiskPath(path));
-                Directory.Delete(path, true);
-                JunctionPoint.Create(path, Program.GetOtherDiskPath(path), false);
+                await Task.Run(() => Program.MoveWithJunction(path));
             } else {
-                string target = JunctionPoint.GetTarget(path);
-                JunctionPoint.Delete(path);
-                Program.CopyFolder(target, path);
-                Directory.Delete(target, true);
-            }
+                await Task.Run(() => Program.MoveReplaceJunction(path));
+            }          
             Close();
         }
+
 
         private void button1_Click(object sender, EventArgs e) {
             Close();

@@ -76,7 +76,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Name = "ConfigurationForm";
-            this.Text = "Configuration";
+            this.Text = "Junction Manager Configuration";
             this.ResumeLayout(false);
             this.PerformLayout();
 
