@@ -13,28 +13,11 @@ namespace JunctionManager {
             if (args.Length == 0) {
                 Application.Run(new ConfigurationForm());
             } else {
-                if (!JunctionPoint.Exists(args[0])) {
-                    Console.WriteLine("Moving " + args[0] + " to " + GetOtherDiskPath(args[0]));
-                    Console.WriteLine("Type Y to confirm, or anything else to abort");
-                    if (Console.ReadLine().ToUpper() == "Y") {
-                        CopyFolder(args[0], GetOtherDiskPath(args[0]));
-                        Directory.Delete(args[0], true);
-                        JunctionPoint.Create(args[0], GetOtherDiskPath(args[0]), false);
-                    }
-                } else {
-                    string target = JunctionPoint.GetTarget(args[0]);
-                    Console.WriteLine("Moving " + target + " to " + args[0]);
-                    Console.WriteLine("Type Y to confirm, or anything else to abort");
-                    if (Console.ReadLine().ToUpper() == "Y") {
-                        JunctionPoint.Delete(args[0]);
-                        CopyFolder(target, args[0]);
-                        Directory.Delete(target, true);
-                    }
-                }
+                Application.Run(new TransferForm(args[0]));
             }
         }
 
-        static private String GetOtherDiskPath(String path) {
+        static public String GetOtherDiskPath(String path) {
             return Properties.Settings.Default.StorageLocation + path.Substring(2, path.Length - 2);
         }
 

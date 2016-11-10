@@ -3,24 +3,24 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>9e4f9f88-e092-4a9a-9ff0-6286ecd9d31a</ProjectGuid>
+    <ProjectGuid>aa6bbbfc-7969-42c0-9d95-2a5f1351c23c</ProjectGuid>
     <OutputType>msi</OutputType>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>AI Setup Project1.aip</StartupFile>
+    <StartupFile>JunctionManagerInstaller.aip</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <IsWindowsApplication>True</IsWindowsApplication>
-    <AssemblyName>AI Setup Project1</AssemblyName>
+    <AssemblyName>JunctionManagerInstaller</AssemblyName>
     <Name>JunctionManagerInstaller</Name>
-    <RootNamespace>AI Setup Project1</RootNamespace>
+    <RootNamespace>JunctionManagerInstaller</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'All' ">
     <DebugSymbols>false</DebugSymbols>
     <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AI Setup Project1.aip">
+    <Compile Include="JunctionManagerInstaller.aip">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

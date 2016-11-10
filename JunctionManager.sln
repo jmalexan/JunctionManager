@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JunctionManager", "JunctionManager\JunctionManager.csproj", "{F28C1519-33A5-4ED9-9D3B-C79376B3C053}"
 EndProject
-Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "JunctionManagerInstaller", "AI Setup Project1\JunctionManagerInstaller.aiproj", "{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "JunctionManagerInstaller", "JunctionManagerInstaller\JunctionManagerInstaller.aiproj", "{AA6BBBFC-7969-42C0-9D95-2A5F1351C23C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F28C1519-33A5-4ED9-9D3B-C79376B3C053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F28C1519-33A5-4ED9-9D3B-C79376B3C053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F28C1519-33A5-4ED9-9D3B-C79376B3C053}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}.Debug|Any CPU.ActiveCfg = All
-		{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}.Debug|Any CPU.Build.0 = All
-		{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}.Release|Any CPU.ActiveCfg = All
-		{9E4F9F88-E092-4A9A-9FF0-6286ECD9D31A}.Release|Any CPU.Build.0 = All
+		{AA6BBBFC-7969-42C0-9D95-2A5F1351C23C}.Debug|Any CPU.ActiveCfg = All
+		{AA6BBBFC-7969-42C0-9D95-2A5F1351C23C}.Debug|Any CPU.Build.0 = All
+		{AA6BBBFC-7969-42C0-9D95-2A5F1351C23C}.Release|Any CPU.ActiveCfg = All
+		{AA6BBBFC-7969-42C0-9D95-2A5F1351C23C}.Release|Any CPU.Build.0 = All
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
