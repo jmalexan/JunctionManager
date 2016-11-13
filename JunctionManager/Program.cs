@@ -17,24 +17,23 @@ namespace JunctionManager {
             }
         }
 
-        public static void MoveWithJunction(string path) {
-            if (Directory.Exists(Program.GetOtherDiskPath(path))) {
-                Directory.Delete(Program.GetOtherDiskPath(path), true);
+        public static void MoveWithJunction(string path, string target) {
+            if (Directory.Exists(target)) {
+                Directory.Delete(target, true);
             }
-            Program.CopyFolder(path, Program.GetOtherDiskPath(path));
+            Program.CopyFolder(path, target);
             Directory.Delete(path, true);
-            JunctionPoint.Create(path, Program.GetOtherDiskPath(path), false);
+            JunctionPoint.Create(path, target, false);
         }
 
-        public static void MoveReplaceJunction(string path) {
-            string target = JunctionPoint.GetTarget(path);
+        public static void MoveReplaceJunction(string path, string junctionPath) {
             JunctionPoint.Delete(path);
-            Program.CopyFolder(target, path);
-            Directory.Delete(target, true);
+            Program.CopyFolder(junctionPath, path);
+            Directory.Delete(junctionPath, true);
         }
 
         static public String GetOtherDiskPath(String path) {
-            return Properties.Settings.Default.StorageLocation + path.Substring(2, path.Length - 2);
+            return Properties.Settings.Default.StorageLocation;
         }
 
         static public void CopyFolder(string sourceFolder, string destFolder) {
