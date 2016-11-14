@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace JunctionManager {
     class Program {
 
-        static SQLiteConnection junctionDb;
+        public static SQLiteConnection junctionDb;
 
         [STAThread]
         static void Main(string[] args) {
@@ -17,7 +17,7 @@ namespace JunctionManager {
                 SQLiteConnection.CreateFile("junctions.db");
             }
             if (args.Length == 0) {
-                Application.Run(new ConfigurationForm());
+                Application.Run(new JunctionViewForm());
             } else {
                 Application.Run(new TransferForm(args[0]));
             }
@@ -31,6 +31,7 @@ namespace JunctionManager {
             Directory.Delete(path, true);
             JunctionPoint.Create(path, target, false);
             Program.ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + path + "', '" + target + "');");
+            Program.junctionDb.Close();
         }
 
         public static void MoveReplaceJunction(string path, string junctionPath) {
@@ -38,15 +39,23 @@ namespace JunctionManager {
             Program.CopyFolder(junctionPath, path);
             Directory.Delete(junctionPath, true);
             Program.ExecuteSQLiteCommand("DELETE FROM junctions WHERE origin = '" + path + "';");
+            Program.junctionDb.Close();
         }
 
         public static SQLiteDataReader ExecuteSQLiteCommand(string stringCommand) {
+            SQLiteCommand command = new SQLiteCommand(stringCommand, GetSQLiteConnection());
+            return command.ExecuteReader();
+        }
+
+        public static SQLiteConnection GetSQLiteConnection() {
             junctionDb = new SQLiteConnection("Data Source=junctions.db;Version=3");
             junctionDb.Open();
             SQLiteCommand command = new SQLiteCommand("CREATE TABLE IF NOT EXISTS junctions (origin VARCHAR(255), target VARCHAR(255));", junctionDb);
             command.ExecuteNonQuery();
-            command = new SQLiteCommand(stringCommand, junctionDb);
-            return command.ExecuteReader();
+            junctionDb.Close();
+            junctionDb = new SQLiteConnection("Data Source=junctions.db;Version=3");
+            junctionDb.Open();
+            return junctionDb;
         }
 
         static public String GetOtherDiskPath(String path) {
