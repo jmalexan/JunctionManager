@@ -30,12 +30,23 @@ namespace JunctionManager {
             Program.CopyFolder(path, target);
             Directory.Delete(path, true);
             JunctionPoint.Create(path, target, false);
+            Program.ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + path + "', '" + target + "');");
         }
 
         public static void MoveReplaceJunction(string path, string junctionPath) {
             JunctionPoint.Delete(path);
             Program.CopyFolder(junctionPath, path);
             Directory.Delete(junctionPath, true);
+            Program.ExecuteSQLiteCommand("DELETE FROM junctions WHERE origin = '" + path + "';");
+        }
+
+        public static SQLiteDataReader ExecuteSQLiteCommand(string stringCommand) {
+            junctionDb = new SQLiteConnection("Data Source=junctions.db;Version=3");
+            junctionDb.Open();
+            SQLiteCommand command = new SQLiteCommand("CREATE TABLE IF NOT EXISTS junctions (origin VARCHAR(255), target VARCHAR(255));", junctionDb);
+            command.ExecuteNonQuery();
+            command = new SQLiteCommand(stringCommand, junctionDb);
+            return command.ExecuteReader();
         }
 
         static public String GetOtherDiskPath(String path) {
