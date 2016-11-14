@@ -13,8 +13,8 @@ namespace JunctionManager {
         static void Main(string[] args) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (!File.Exists("junctions.db")) {
-                SQLiteConnection.CreateFile("junctions.db");
+            if (!File.Exists(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\junctions.db")) {
+                SQLiteConnection.CreateFile(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\junctions.db");
             }
             if (args.Length == 0) {
                 Application.Run(new JunctionViewForm());
@@ -43,19 +43,24 @@ namespace JunctionManager {
         }
 
         public static SQLiteDataReader ExecuteSQLiteCommand(string stringCommand) {
+            GetSQLiteConnection();
             SQLiteCommand command = new SQLiteCommand(stringCommand, GetSQLiteConnection());
             return command.ExecuteReader();
         }
 
         public static SQLiteConnection GetSQLiteConnection() {
-            junctionDb = new SQLiteConnection("Data Source=junctions.db;Version=3");
+            CreateTableIfNeed();
+            junctionDb = new SQLiteConnection("Data Source=" + Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\junctions.db;Version=3");
+            junctionDb.Open();
+            return junctionDb;
+        }
+
+        private static void CreateTableIfNeed() {
+            junctionDb = new SQLiteConnection("Data Source=" + Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\junctions.db;Version=3");
             junctionDb.Open();
             SQLiteCommand command = new SQLiteCommand("CREATE TABLE IF NOT EXISTS junctions (origin VARCHAR(255), target VARCHAR(255));", junctionDb);
             command.ExecuteNonQuery();
             junctionDb.Close();
-            junctionDb = new SQLiteConnection("Data Source=junctions.db;Version=3");
-            junctionDb.Open();
-            return junctionDb;
         }
 
         static public String GetOtherDiskPath(String path) {
