@@ -1,15 +1,21 @@
 ﻿using Monitor.Core.Utilities;
 using System;
+using System.Data.SQLite;
 using System.IO;
 using System.Windows.Forms;
 
 namespace JunctionManager {
     class Program {
 
+        static SQLiteConnection junctionDb;
+
         [STAThread]
         static void Main(string[] args) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (!File.Exists("junctions.db")) {
+                SQLiteConnection.CreateFile("junctions.db");
+            }
             if (args.Length == 0) {
                 Application.Run(new ConfigurationForm());
             } else {
