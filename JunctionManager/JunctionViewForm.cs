@@ -23,7 +23,7 @@ namespace JunctionManager {
             dataAdapter.Fill(dataSet);
 
             dataGridView1.DataSource = dataSet.Tables[0].DefaultView;
-            SQLiteManager.junctionDb.Close();
+            SQLiteManager.CloseConnection();
         }
 
         private void JunctionViewForm_Load(object sender, EventArgs e) {

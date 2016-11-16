@@ -17,7 +17,8 @@ namespace JunctionManager {
             Application.SetCompatibleTextRenderingDefault(false);
             //Create the database, if it doesn't exist already, in the executable's folder
             string exeFolder = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            if (!File.Exists(Path.GetDirectoryName(exeFolder + "\\junctions.db"))) {
+            if (!File.Exists(exeFolder + "\\junctions.db")) {
+                Boolean stuff = true;
                 SQLiteConnection.CreateFile(exeFolder + "\\junctions.db");
             }
             //Create the table in the database, if it doesn't exist already
