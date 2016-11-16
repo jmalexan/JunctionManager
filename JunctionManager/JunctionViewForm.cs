@@ -8,6 +8,8 @@ namespace JunctionManager {
         public JunctionViewForm() {
             InitializeComponent();
 
+            ActiveControl = button2;
+
             refreshDataGrid();
 
             dataGridView1.Columns[0].HeaderText = "Junction";

@@ -14,6 +14,7 @@ namespace JunctionManager {
 
         public TransferForm(string arg) {
             InitializeComponent();
+            ActiveControl = button2;
             path = arg;
             SQLiteDataReader reader = SQLiteManager.ExecuteSQLiteCommand("SELECT origin, target FROM junctions WHERE target = '" + path + "';");
             string databaseOrigin = null;
