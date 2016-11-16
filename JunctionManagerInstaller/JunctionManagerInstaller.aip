@@ -13,10 +13,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="Manufacturer" Value="NotDisliked"/>
-    <ROW Property="ProductCode" Value="1033:{B49912E9-2060-4E4D-82E4-F55913990FD4} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{1D2C815A-D35B-47E8-B77B-A0290AD65080} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Junction Manager"/>
-    <ROW Property="ProductVersion" Value="0.3.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="0.4" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{40CC485B-B8A2-4A66-BBFE-77698D78832F}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

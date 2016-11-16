@@ -23,8 +23,13 @@ namespace JunctionManager {
             }
         }
 
-        static public String GetOtherDiskPath(String path) {
-            return Properties.Settings.Default.StorageLocation;
+        static public String GetLastStorage() {
+            return Properties.Settings.Default.LastStorageFolder;
+        }
+
+        static public void SetLastStorage(String path) {
+            Properties.Settings.Default.LastStorageFolder = path;
+            Properties.Settings.Default.Save();
         }
 
         static public void CopyFolder(string sourceFolder, string destFolder) {

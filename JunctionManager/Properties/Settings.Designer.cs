@@ -25,13 +25,13 @@ namespace JunctionManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Storage")]
-        public string StorageLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastStorageFolder {
             get {
-                return ((string)(this["StorageLocation"]));
+                return ((string)(this["LastStorageFolder"]));
             }
             set {
-                this["StorageLocation"] = value;
+                this["LastStorageFolder"] = value;
             }
         }
     }
