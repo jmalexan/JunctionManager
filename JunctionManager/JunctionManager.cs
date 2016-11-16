@@ -1,6 +1,4 @@
-﻿
-
-using Monitor.Core.Utilities;
+﻿using Monitor.Core.Utilities;
 using System.IO;
 
 namespace JunctionManager {
