@@ -34,9 +34,14 @@ namespace JunctionManager {
             progressBar1.Style = ProgressBarStyle.Marquee;
             if (!junctionArg) {
                 string target = textBox1.Text + "\\" + new DirectoryInfo(path).Name;
-                await Task.Run(() => Program.MoveWithJunction(path, target));
+                DialogResult dialogResult = MessageBox.Show("There is already an existing folder at that location, would you like to delete it?", "Existing Folder Found", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes) {
+                    Directory.Delete(target, true);
+                    await Task.Run(() => JunctionManager.MoveWithJunction(path, target));
+
+                }
             } else {
-                await Task.Run(() => Program.MoveReplaceJunction(path, junctionPath));
+                await Task.Run(() => JunctionManager.MoveReplaceJunction(path, junctionPath));
             }          
             Close();
         }

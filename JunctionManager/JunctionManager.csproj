@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F28C1519-33A5-4ED9-9D3B-C79376B3C053}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JunctionManager</RootNamespace>
     <AssemblyName>JunctionManager</AssemblyName>
@@ -86,6 +86,7 @@
     <Compile Include="ConfigurationForm.designer.cs">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="JunctionManager.cs" />
     <Compile Include="JunctionPoint.cs" />
     <Compile Include="JunctionViewForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +101,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SQLiteManager.cs" />
     <Compile Include="TransferForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,11 +23,11 @@ namespace JunctionManager {
         private void refreshDataGrid() {
             DataSet dataSet = new DataSet();
 
-            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT * FROM junctions;", Program.GetSQLiteConnection());
+            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT * FROM junctions;", SQLiteManager.GetSQLiteConnection());
             dataAdapter.Fill(dataSet);
 
             dataGridView1.DataSource = dataSet.Tables[0].DefaultView;
-            Program.junctionDb.Close();
+            SQLiteManager.junctionDb.Close();
         }
 
         private void JunctionViewForm_Load(object sender, EventArgs e) {

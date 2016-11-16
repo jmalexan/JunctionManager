@@ -7,9 +7,6 @@ namespace JunctionManager {
     class JunctionManager {
 
         public static void MoveWithJunction(string path, string target) {
-            if (Directory.Exists(target)) {
-                Directory.Delete(target, true);
-            }
             Program.CopyFolder(path, target);
             Directory.Delete(path, true);
             JunctionPoint.Create(path, target, false);
