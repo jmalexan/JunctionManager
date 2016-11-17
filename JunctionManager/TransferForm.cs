@@ -14,8 +14,10 @@ namespace JunctionManager {
 
         public TransferForm(string arg) {
             InitializeComponent();
-            ActiveControl = button2;
+            //Select the confirm button by default
+            ActiveControl = confirmButton;
             path = arg;
+            //Get any junctions that point to the folder being moved, and save where they were moved from if they exist
             SQLiteDataReader reader = SQLiteManager.ExecuteSQLiteCommand("SELECT origin, target FROM junctions WHERE target = '" + path + "';");
             string databaseOrigin = null;
             if (reader.Read()) {
@@ -24,21 +26,30 @@ namespace JunctionManager {
             reader.Close();
             SQLiteManager.CloseConnection();
             if (!JunctionPoint.Exists(path)) {
+                //If the directory given is not a junction and is registered in the database...
                 if (databaseOrigin != null) {
+                    //Hide some elements to just show a message instead of getting input from the user
                     junctionArg = true;
-                    textBox1.Visible = false;
-                    button3.Visible = false;
+                    destinationInput.Visible = false;
+                    browseButton.Visible = false;
+                    //Assign the variables their proper values
                     junctionPath = path;
                     path = databaseOrigin;
+                    //Give the user a message that this folder has been moved by this app, and ask if they want to move it back
                     label1.Text = junctionPath + " is already moved from " + path + "! Would you like to move it back?";
                 } else {
+                    //If the directory given is not a junction and isn't registered in the database...
+                    //Leave the window in its standard move with junction state, and put the last used location as the default
                     junctionArg = false;
-                    textBox1.Text = Program.GetLastStorage();
+                    destinationInput.Text = Program.GetLastStorage();
                 }
             } else {
+                //if the directory given is a junction
+                //Hide some elements to just show a message instead of getting input from the user
                 junctionArg = true;
-                textBox1.Visible = false;
-                button3.Visible = false;
+                destinationInput.Visible = false;
+                browseButton.Visible = false;
+                //Get the directory the junction is pointing to and ask the user if he would like to move that folder back
                 junctionPath = JunctionPoint.GetTarget(path);
                 label1.Text = "Move " + junctionPath + " back to its original location at " + path + "?";
             }
@@ -49,13 +60,19 @@ namespace JunctionManager {
         }
 
         private async void button2_Click(object sender, EventArgs e) {
-            progressBar1.Style = ProgressBarStyle.Marquee;
+            //Enable an ambiguous loading indicator
+            progressBar.Style = ProgressBarStyle.Marquee;
             if (!junctionArg) {
-                string target = textBox1.Text + "\\" + new DirectoryInfo(path).Name;
-                if (textBox1.Text == path) {
+                //If this form is not involving an existing junction...
+                //Find the target by getting the input from the user and adding the name of the directory chosen
+                string target = destinationInput.Text + "\\" + new DirectoryInfo(path).Name;
+                //Warn the user if they are attempting to put the folder into the folder, which will lead to recursion
+                if (destinationInput.Text == path) {
                     DialogResult recursionCaution = MessageBox.Show("You're attempting to move a folder within itself, this will put this folder within itself forever until the path is to long.", "Recursion Warning", MessageBoxButtons.OK);
                 } else {
+                    //If a directory already exists where the folder is going to be moved, ask the user if he is sure he wants to delete it
                     if (Directory.Exists(target)) {
+                        //
                         DialogResult dialogResult = MessageBox.Show("There is already an existing folder at " + target + ", would you like to delete it?", "Existing Folder Found", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes) {
                             Directory.Delete(target, true);
@@ -64,24 +81,30 @@ namespace JunctionManager {
                             Close();
                         }
                     }
+                    //Move the folder and make a junction
                     await Task.Run(() => JunctionManager.MoveWithJunction(path, target));
-                    Program.SetLastStorage(textBox1.Text);
+                    //Take the final destination choice of the user and save it for next time
+                    Program.SetLastStorage(destinationInput.Text);
                 }
             } else {
+                //Move the folder back and replace the junction
                 await Task.Run(() => JunctionManager.MoveReplaceJunction(path, junctionPath));
             }
+            //Close the form
             Close();
         }
 
 
         private void button1_Click(object sender, EventArgs e) {
+            //Close the form
             Close();
         }
 
         private void button3_Click(object sender, EventArgs e) {
+            //Start the folder browser with the new folder button enabled
             folderBrowserDialog1.ShowNewFolderButton = true;
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK) {
-                textBox1.Text = folderBrowserDialog1.SelectedPath;
+                destinationInput.Text = folderBrowserDialog1.SelectedPath;
             }
         }
     }

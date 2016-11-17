@@ -135,7 +135,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Compile Include="SQLiteManager.cs" />
     <Compile Include="TransferForm.cs">
       <SubType>Form</SubType>
