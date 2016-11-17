@@ -4,26 +4,24 @@ using System.IO;
 namespace JunctionManager {
     class JunctionManager {
 
-        public static void MoveWithJunction(string path, string target) {
+        public static void MoveWithJunction(string origin, string target) {
             //Copy folder and delete the original folder (essentially a move"
-            Program.CopyFolder(path, target);
-            Directory.Delete(path, true);
+            Program.CopyFolder(origin, target);
+            Directory.Delete(origin, true);
             //Create a junction at the original location pointing to the new location
-            JunctionPoint.Create(path, target, false);
+            JunctionPoint.Create(origin, target, false);
             //Update the SQLite database with the new junction created
-            SQLiteManager.ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + path + "', '" + target + "');");
-            SQLiteManager.CloseConnection();
+            SQLiteManager.AddJunction(origin, target);
         }
 
-        public static void MoveReplaceJunction(string path, string junctionPath) {
+        public static void MoveReplaceJunction(string origin, string target) {
             //Delete the junction
-            JunctionPoint.Delete(path);
+            JunctionPoint.Delete(origin);
             //Copy the folder back and delete the original folder (essentially moving the function)
-            Program.CopyFolder(junctionPath, path);
-            Directory.Delete(junctionPath, true);
-            //Update the SQLite database
-            SQLiteManager.ExecuteSQLiteCommand("DELETE FROM junctions WHERE origin = '" + path + "';");
-            SQLiteManager.CloseConnection();
+            Program.CopyFolder(target, origin);
+            Directory.Delete(target, true);
+            //Update the SQLite database with the removal of the junction
+            SQLiteManager.RemoveJunction(origin);
         }
     }
 }

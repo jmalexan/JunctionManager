@@ -20,6 +20,18 @@ namespace JunctionManager {
             return junctionDb;
         }
 
+        public static void RemoveJunction(string origin)
+        {
+            ExecuteSQLiteCommand("DELETE FROM junctions WHERE origin = '" + origin + "';");
+            CloseConnection();
+        }
+
+        public static void AddJunction(string origin, string target)
+        {
+            SQLiteManager.ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + origin + "', '" + target + "');");
+            SQLiteManager.CloseConnection();
+        }
+
         public static void CloseConnection() {
             //Close the connection, so you don't need to reference the connection outside this class
             junctionDb.Close();
