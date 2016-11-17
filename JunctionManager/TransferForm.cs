@@ -18,7 +18,7 @@ namespace JunctionManager {
             ActiveControl = confirmButton;
             origin = arg;
             //Get any junctions that point to the folder being moved, and save where they were moved from if they exist
-            SQLiteDataReader reader = SQLiteManager.ExecuteSQLiteCommand("SELECT origin, target FROM junctions WHERE target = '" + path + "';");
+            SQLiteDataReader reader = SQLiteManager.ExecuteSQLiteCommand("SELECT origin, target FROM junctions WHERE target = '" + origin + "';");
             string databaseOrigin = null;
             if (reader.Read()) {
                 databaseOrigin = reader.GetString(reader.GetOrdinal("origin"));

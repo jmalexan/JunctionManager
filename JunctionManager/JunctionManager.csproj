@@ -120,6 +120,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExistingJunctionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExistingJunctionForm.Designer.cs">
+      <DependentUpon>ExistingJunctionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="JunctionManager.cs" />
     <Compile Include="JunctionPoint.cs" />
     <Compile Include="JunctionViewForm.cs">
@@ -153,6 +159,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExistingJunctionForm.resx">
+      <DependentUpon>ExistingJunctionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JunctionViewForm.resx">
       <DependentUpon>JunctionViewForm.cs</DependentUpon>
     </EmbeddedResource>

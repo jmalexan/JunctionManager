@@ -53,5 +53,10 @@ namespace JunctionManager {
             //Update the grid view
             refreshDataGrid();
         }
+
+        private void addExistingJunctionToolStripMenuItem_Click(object sender, EventArgs e) {
+            (new ExistingJunctionForm()).ShowDialog();
+            refreshDataGrid();
+        }
     }
 }
