@@ -48,7 +48,7 @@ namespace JunctionManager {
                     target = realTarget;
                 }
                 if (!Directory.Exists(realTarget)) {
-                    MessageBox.Show("The folder at " + target + " is missing, the junction " + origin + "pointed to it.", "Folder missing", MessageBoxButtons.OK);
+                    MessageBox.Show("The folder at " + target + " is missing, the junction " + origin + " pointed to it.", "Folder missing", MessageBoxButtons.OK);
                     JunctionPoint.Delete(origin);
                     sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
                 }
