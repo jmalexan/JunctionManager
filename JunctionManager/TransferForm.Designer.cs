@@ -46,7 +46,7 @@
             // abortButton
             // 
             this.abortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.abortButton.Location = new System.Drawing.Point(314, 90);
+            this.abortButton.Location = new System.Drawing.Point(313, 90);
             this.abortButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.abortButton.Name = "abortButton";
             this.abortButton.Size = new System.Drawing.Size(75, 25);
@@ -58,7 +58,7 @@
             // confirmButton
             // 
             this.confirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.confirmButton.Location = new System.Drawing.Point(395, 90);
+            this.confirmButton.Location = new System.Drawing.Point(394, 90);
             this.confirmButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(75, 25);
@@ -75,7 +75,7 @@
             this.progressBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar.MarqueeAnimationSpeed = 20;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(293, 23);
+            this.progressBar.Size = new System.Drawing.Size(292, 23);
             this.progressBar.TabIndex = 3;
             // 
             // destinationInput
@@ -85,13 +85,13 @@
             this.destinationInput.Location = new System.Drawing.Point(105, 11);
             this.destinationInput.Margin = new System.Windows.Forms.Padding(4);
             this.destinationInput.Name = "destinationInput";
-            this.destinationInput.Size = new System.Drawing.Size(280, 22);
+            this.destinationInput.Size = new System.Drawing.Size(279, 22);
             this.destinationInput.TabIndex = 4;
             // 
             // browseButton
             // 
             this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseButton.Location = new System.Drawing.Point(395, 10);
+            this.browseButton.Location = new System.Drawing.Point(394, 10);
             this.browseButton.Margin = new System.Windows.Forms.Padding(4);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(75, 24);
@@ -105,7 +105,7 @@
             this.AcceptButton = this.confirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(483, 128);
+            this.ClientSize = new System.Drawing.Size(482, 128);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.destinationInput);
             this.Controls.Add(this.progressBar);

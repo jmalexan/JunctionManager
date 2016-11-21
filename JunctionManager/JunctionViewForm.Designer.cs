@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addExistingJunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createJunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.junctionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -123,6 +124,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createJunctionToolStripMenuItem,
             this.addExistingJunctionToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
@@ -134,6 +136,13 @@
             this.addExistingJunctionToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.addExistingJunctionToolStripMenuItem.Text = "Add Existing Junction";
             this.addExistingJunctionToolStripMenuItem.Click += new System.EventHandler(this.addExistingJunctionToolStripMenuItem_Click);
+            // 
+            // createJunctionToolStripMenuItem
+            // 
+            this.createJunctionToolStripMenuItem.Name = "createJunctionToolStripMenuItem";
+            this.createJunctionToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.createJunctionToolStripMenuItem.Text = "Create Junction";
+            this.createJunctionToolStripMenuItem.Click += new System.EventHandler(this.createJunctionToolStripMenuItem_Click);
             // 
             // JunctionViewForm
             // 
@@ -167,5 +176,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addExistingJunctionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createJunctionToolStripMenuItem;
     }
 }

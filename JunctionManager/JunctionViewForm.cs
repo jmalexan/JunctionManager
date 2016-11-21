@@ -98,5 +98,10 @@ namespace JunctionManager {
             (new ExistingJunctionForm()).ShowDialog();
             refreshDataGrid();
         }
+
+        private void createJunctionToolStripMenuItem_Click(object sender, EventArgs e) {
+            (new CreateForm()).ShowDialog();
+            refreshDataGrid();
+        }
     }
 }
