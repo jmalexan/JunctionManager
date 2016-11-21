@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Monitor.Core.Utilities;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Windows.Forms;
 
 namespace JunctionManager {
@@ -20,6 +23,43 @@ namespace JunctionManager {
         }
 
         private void refreshDataGrid() {
+
+            SQLiteDataReader reader =  SQLiteManager.ExecuteSQLiteCommand("SELECT * FROM junctions;");
+            List<string> sqlCommandQueue = new List<string>();
+            while (reader.Read()) {
+                string origin = reader.GetString(reader.GetOrdinal("origin"));
+                string target = reader.GetString(reader.GetOrdinal("target"));
+                if (!JunctionPoint.Exists(origin)) {
+                    if (Directory.Exists(origin)) {
+                        MessageBox.Show("The junction at " + origin + " that pointed to " + target + " has been replaced by a folder by the same name.  If you moved the folder back yourself this is fine, otherwise you might wanna look into this", "Junction is now a folder", MessageBoxButtons.OK);
+                        sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                        continue;
+                    } else {
+                        MessageBox.Show("The junction at " + origin + " that pointed to " + target + " is not there, it could have been moved or deleted.", "Missing junction", MessageBoxButtons.OK);
+                        sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                        continue;
+                    }
+                    
+                }
+                string realTarget = JunctionPoint.GetTarget(origin);
+                if (realTarget != target) {
+                    MessageBox.Show("The junction at " + origin + " has changed targets from " + target + " to " + realTarget + ".", "Moved junction target", MessageBoxButtons.OK);
+                    sqlCommandQueue.Add("UPDATE junctions SET target = '" + realTarget + "' WHERE origin = '" + origin + "';");
+                    target = realTarget;
+                }
+                if (!Directory.Exists(realTarget)) {
+                    MessageBox.Show("The folder at " + target + " is missing, the junction " + origin + "pointed to it.", "Folder missing", MessageBoxButtons.OK);
+                    JunctionPoint.Delete(origin);
+                    sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                }
+            }
+            SQLiteManager.CloseConnection();
+            foreach (string s in sqlCommandQueue) {
+                SQLiteManager.ExecuteSQLiteCommand(s);
+                SQLiteManager.CloseConnection();
+            }
+            SQLiteManager.CloseConnection();
+
             //Create a DataSet object
             DataSet dataSet = new DataSet();
 

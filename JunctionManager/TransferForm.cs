@@ -60,12 +60,21 @@ namespace JunctionManager {
         }
 
         private async void button2_Click(object sender, EventArgs e) {
-            //Enable an ambiguous loading indicator
-            progressBar.Style = ProgressBarStyle.Marquee;
             if (!junctionArg) {
                 //If this form is not involving an existing junction...
                 //Find the target by getting the input from the user and adding the name of the directory chosen
                 target = destinationInput.Text + "\\" + new DirectoryInfo(origin).Name;
+
+                //If the destinatino box is empty, select it, play a tone, and quit the method
+                if (destinationInput.Text.Length == 0) {
+                    ActiveControl = destinationInput;
+                    System.Media.SystemSounds.Exclamation.Play();
+                    return;
+                }
+
+                //Enable an ambiguous loading indicator
+                progressBar.Style = ProgressBarStyle.Marquee;
+
                 //Warn the user if they are attempting to put the folder into the folder, which will lead to recursion
                 if (destinationInput.Text == origin) {
                     DialogResult recursionCaution = MessageBox.Show("You're attempting to move a folder within itself, this will put this folder within itself forever until the path is to long.", "Recursion Warning", MessageBoxButtons.OK);
@@ -87,6 +96,8 @@ namespace JunctionManager {
                     Program.SetLastStorage(destinationInput.Text);
                 }
             } else {
+                //Enable an ambiguous loading indicator
+                progressBar.Style = ProgressBarStyle.Marquee;
                 //Move the folder back and replace the junction
                 await Task.Run(() => JunctionManager.MoveReplaceJunction(origin, target));
             }
