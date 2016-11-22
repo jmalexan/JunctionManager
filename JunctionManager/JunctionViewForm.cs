@@ -80,8 +80,10 @@ namespace JunctionManager {
 
             if (dataGridView1.Rows.Count == 0) {
                 restoreButton.Enabled = false;
+                moveButton.Enabled = false;
             } else {
                 restoreButton.Enabled = true;
+                moveButton.Enabled = false;
             }
         }
 
@@ -118,6 +120,10 @@ namespace JunctionManager {
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             (new AboutForm()).ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            (new MoveForm(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString())).ShowDialog();
         }
     }
 }

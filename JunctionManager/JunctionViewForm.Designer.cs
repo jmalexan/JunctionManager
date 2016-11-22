@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JunctionViewForm));
             this.doneButton = new System.Windows.Forms.Button();
             this.junctionGroupBox = new System.Windows.Forms.GroupBox();
+            this.moveButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.restoreButton = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             this.junctionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.junctionGroupBox.Controls.Add(this.moveButton);
             this.junctionGroupBox.Controls.Add(this.refreshButton);
             this.junctionGroupBox.Controls.Add(this.dataGridView1);
             this.junctionGroupBox.Controls.Add(this.restoreButton);
@@ -66,6 +68,17 @@
             this.junctionGroupBox.TabIndex = 3;
             this.junctionGroupBox.TabStop = false;
             this.junctionGroupBox.Text = "Junctions";
+            // 
+            // moveButton
+            // 
+            this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moveButton.Location = new System.Drawing.Point(296, 298);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(75, 30);
+            this.moveButton.TabIndex = 4;
+            this.moveButton.Text = "Move";
+            this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // refreshButton
             // 
@@ -160,14 +173,14 @@
             // showLogToolStripMenuItem
             // 
             this.showLogToolStripMenuItem.Name = "showLogToolStripMenuItem";
-            this.showLogToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.showLogToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.showLogToolStripMenuItem.Text = "Show Log";
             this.showLogToolStripMenuItem.Click += new System.EventHandler(this.showLogToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -206,5 +219,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button moveButton;
     }
 }

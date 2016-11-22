@@ -70,8 +70,12 @@ namespace JunctionManager {
                 }
 
                 //Warn the user if they are attempting to put the folder into the folder, which will lead to recursion
-                if (destinationInput.Text == origin) {
+                if (destinationInput.Text == origin.Substring(0, target.LastIndexOf('\\'))) {
                     DialogResult recursionCaution = MessageBox.Show("You're attempting to move a folder within itself, this will put this folder within itself forever until the path is to long.", "Recursion Warning", MessageBoxButtons.OK);
+                } else if (destinationInput.Text == origin) {
+                    DialogResult recursionCaution = MessageBox.Show("You can't move a folder to where it currently is", "No Move Warning", MessageBoxButtons.OK);
+                } else if (JunctionPoint.Exists(origin)) {
+                    DialogResult recursionCaution = MessageBox.Show("Moving a junction isn't allowed, please restore the junction at " + origin + " first.", "Can't Move Junction", MessageBoxButtons.OK);
                 } else {
                     DialogResult confirmDialog = MessageBox.Show("Are you sure you want to create a junction at " + origin + " that links to " + target + "?", "Confirmation", MessageBoxButtons.YesNo);
                     if (confirmDialog == DialogResult.No) {
