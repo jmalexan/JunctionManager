@@ -2,6 +2,7 @@
 using System;
 using System.Data.SQLite;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,7 +42,7 @@ namespace JunctionManager {
                     //If the directory given is not a junction and isn't registered in the database...
                     //Leave the window in its standard move with junction state, and put the last used location as the default
                     junctionArg = false;
-                    destinationInput.Text = Program.GetLastStorage();
+                    destinationInput.Text = Program.GetLastStorage() + "\\" + new DirectoryInfo(origin).Name;
                 }
             } else {
                 //if the directory given is a junction
@@ -62,8 +63,8 @@ namespace JunctionManager {
         private async void button2_Click(object sender, EventArgs e) {
             if (!junctionArg) {
                 //If this form is not involving an existing junction...
-                //Find the target by getting the input from the user and adding the name of the directory chosen
-                target = destinationInput.Text + "\\" + new DirectoryInfo(origin).Name;
+                //Find the target by getting the input from the user
+                target = destinationInput.Text;
 
                 //If the destinatino box is empty, select it, play a tone, and quit the method
                 if (destinationInput.Text.Length == 0) {
@@ -81,7 +82,7 @@ namespace JunctionManager {
                         return;
                     }
                     //If a directory already exists where the folder is going to be moved, ask the user if he is sure he wants to delete it
-                    if (Directory.Exists(target)) {
+                    if (Directory.Exists(target) && Directory.EnumerateFileSystemEntries(target).Any()) {
                         //
                         DialogResult dialogResult = MessageBox.Show("There is already an existing folder at " + target + ", would you like to delete it?", "Existing Folder Found", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes) {
@@ -98,7 +99,7 @@ namespace JunctionManager {
                     //Move the folder and make a junction
                     await Task.Run(() => JunctionManager.MoveWithJunction(origin, target));
                     //Take the final destination choice of the user and save it for next time
-                    Program.SetLastStorage(destinationInput.Text);
+                    Program.SetLastStorage(target.Substring(0, target.LastIndexOf('\\')));
                 }
             } else {
                 //Enable an ambiguous loading indicator

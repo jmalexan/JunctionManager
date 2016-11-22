@@ -9,7 +9,7 @@ namespace JunctionManager {
             Program.CopyFolder(origin, target);
             Directory.Delete(origin, true);
             //Create a junction at the original location pointing to the new location
-            JunctionPoint.Create(origin, target, false);
+            JunctionPoint.Create(origin, target, true);
             //Update the SQLite database with the new junction created
             SQLiteManager.AddJunction(origin, target);
         }
