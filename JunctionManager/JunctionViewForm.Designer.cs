@@ -31,8 +31,8 @@
             this.restoreButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addExistingJunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createJunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addExistingJunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.junctionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -98,6 +98,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(446, 271);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // restoreButton
             // 
@@ -130,19 +131,19 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // addExistingJunctionToolStripMenuItem
-            // 
-            this.addExistingJunctionToolStripMenuItem.Name = "addExistingJunctionToolStripMenuItem";
-            this.addExistingJunctionToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
-            this.addExistingJunctionToolStripMenuItem.Text = "Add Existing Junction";
-            this.addExistingJunctionToolStripMenuItem.Click += new System.EventHandler(this.addExistingJunctionToolStripMenuItem_Click);
-            // 
             // createJunctionToolStripMenuItem
             // 
             this.createJunctionToolStripMenuItem.Name = "createJunctionToolStripMenuItem";
             this.createJunctionToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.createJunctionToolStripMenuItem.Text = "Create Junction";
             this.createJunctionToolStripMenuItem.Click += new System.EventHandler(this.createJunctionToolStripMenuItem_Click);
+            // 
+            // addExistingJunctionToolStripMenuItem
+            // 
+            this.addExistingJunctionToolStripMenuItem.Name = "addExistingJunctionToolStripMenuItem";
+            this.addExistingJunctionToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.addExistingJunctionToolStripMenuItem.Text = "Add Existing Junction";
+            this.addExistingJunctionToolStripMenuItem.Click += new System.EventHandler(this.addExistingJunctionToolStripMenuItem_Click);
             // 
             // JunctionViewForm
             // 

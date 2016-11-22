@@ -11,6 +11,8 @@ namespace JunctionManager {
         public JunctionViewForm() {
             InitializeComponent();
 
+            restoreButton.Enabled = false;
+
             //Set the active button to be the done button
             ActiveControl = doneButton;
 
@@ -102,6 +104,14 @@ namespace JunctionManager {
         private void createJunctionToolStripMenuItem_Click(object sender, EventArgs e) {
             (new CreateForm()).ShowDialog();
             refreshDataGrid();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex == -1) {
+                restoreButton.Enabled = false;
+            } else {
+                restoreButton.Enabled = true;
+            }
         }
     }
 }
