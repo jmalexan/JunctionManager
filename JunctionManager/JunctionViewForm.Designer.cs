@@ -98,7 +98,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(446, 271);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // restoreButton
             // 
@@ -158,7 +157,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "JunctionViewForm";
             this.Text = "Junctions";
-            this.Load += new System.EventHandler(this.JunctionViewForm_Load);
             this.junctionGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);

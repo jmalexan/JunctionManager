@@ -56,10 +56,6 @@ namespace JunctionManager {
             }
         }
 
-        private void TransferForm_Load(object sender, EventArgs e) {
-
-        }
-
         private async void button2_Click(object sender, EventArgs e) {
             if (!junctionArg) {
                 //If this form is not involving an existing junction...

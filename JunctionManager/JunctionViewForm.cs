@@ -81,10 +81,6 @@ namespace JunctionManager {
             }
         }
 
-        private void JunctionViewForm_Load(object sender, EventArgs e) {
-
-        }
-
         private void button2_Click(object sender, EventArgs e) {
             //Close the form
             Close();
@@ -110,10 +106,6 @@ namespace JunctionManager {
         private void createJunctionToolStripMenuItem_Click(object sender, EventArgs e) {
             (new CreateForm()).ShowDialog();
             refreshDataGrid();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-
         }
     }
 }
