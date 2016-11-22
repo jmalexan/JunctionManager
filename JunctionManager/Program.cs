@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace JunctionManager {
@@ -15,6 +16,9 @@ namespace JunctionManager {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Create the database, if it doesn't exist already, in the executable's folder
+
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ProgramExceptionHandler);
+
             if (!File.Exists(GetExeFolder() + "\\junctions.db")) {
                 SQLiteConnection.CreateFile(GetExeFolder() + "\\junctions.db");
             }
@@ -28,6 +32,11 @@ namespace JunctionManager {
             } else {
                 Application.Run(new TransferForm(args[0]));
             }
+        }
+
+        private static void ProgramExceptionHandler(object sender, UnhandledExceptionEventArgs e) {
+            MessageBox.Show("Error happened", "Error happened", MessageBoxButtons.OK);
+            Log("ERROR: " + ((Exception) e.ExceptionObject).StackTrace);
         }
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]

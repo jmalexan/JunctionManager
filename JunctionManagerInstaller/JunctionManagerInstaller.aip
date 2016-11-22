@@ -14,10 +14,10 @@
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="ARPPRODUCTICON" Value="icon.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="NotDisliked"/>
-    <ROW Property="ProductCode" Value="1033:{92CED754-83EE-4CE9-B3F7-6D20F2463A2F} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{CF0E86FE-CE3A-44DA-80DB-1E00EF17EB6E} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Junction Manager"/>
-    <ROW Property="ProductVersion" Value="0.6.0.0" Type="32" TargetFile="JunctionManager.exe"/>
+    <ROW Property="ProductVersion" Value="0.6.1.0" Type="32" TargetFile="JunctionManager.exe"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{40CC485B-B8A2-4A66-BBFE-77698D78832F}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
