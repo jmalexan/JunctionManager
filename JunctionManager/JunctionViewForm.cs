@@ -73,6 +73,12 @@ namespace JunctionManager {
             dataGridView1.DataSource = dataSet.Tables[0].DefaultView;
             //Close the connection
             SQLiteManager.CloseConnection();
+
+            if (dataGridView1.Rows.Count == 0) {
+                restoreButton.Enabled = false;
+            } else {
+                restoreButton.Enabled = true;
+            }
         }
 
         private void JunctionViewForm_Load(object sender, EventArgs e) {
@@ -107,11 +113,7 @@ namespace JunctionManager {
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            if (e.RowIndex == -1) {
-                restoreButton.Enabled = false;
-            } else {
-                restoreButton.Enabled = true;
-            }
+
         }
     }
 }
