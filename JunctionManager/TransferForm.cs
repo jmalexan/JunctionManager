@@ -72,13 +72,14 @@ namespace JunctionManager {
                     return;
                 }
 
-                //Enable an ambiguous loading indicator
-                progressBar.Style = ProgressBarStyle.Marquee;
-
                 //Warn the user if they are attempting to put the folder into the folder, which will lead to recursion
                 if (destinationInput.Text == origin) {
                     DialogResult recursionCaution = MessageBox.Show("You're attempting to move a folder within itself, this will put this folder within itself forever until the path is to long.", "Recursion Warning", MessageBoxButtons.OK);
                 } else {
+                    DialogResult confirmDialog = MessageBox.Show("Are you sure you want to create a junction at " + origin + " that links to " + target + "?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (confirmDialog == DialogResult.No) {
+                        return;
+                    }
                     //If a directory already exists where the folder is going to be moved, ask the user if he is sure he wants to delete it
                     if (Directory.Exists(target)) {
                         //
@@ -87,9 +88,13 @@ namespace JunctionManager {
                             Directory.Delete(target, true);
                         }
                         else {
-                            Close();
+                            return;
                         }
                     }
+
+                    //Enable an ambiguous loading indicator
+                    progressBar.Style = ProgressBarStyle.Marquee;
+
                     //Move the folder and make a junction
                     await Task.Run(() => JunctionManager.MoveWithJunction(origin, target));
                     //Take the final destination choice of the user and save it for next time

@@ -49,6 +49,11 @@ namespace JunctionManager {
                 DialogResult recursionCaution = MessageBox.Show("There is no folder at " + target + ", please select a folder that the junction can target", "Folder doesn't exist", MessageBoxButtons.OK);
             }
 
+            DialogResult confirmDialog = MessageBox.Show("Are you sure you want to create a junction at " + origin + " that links to " + target + "?", "Confirmation", MessageBoxButtons.YesNo);
+            if (confirmDialog == DialogResult.No) {
+                return;
+            }
+
             JunctionPoint.Create(origin, target, true);
 
             SQLiteManager.AddJunction(origin, target);
