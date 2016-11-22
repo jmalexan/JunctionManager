@@ -15,9 +15,8 @@ namespace JunctionManager {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Create the database, if it doesn't exist already, in the executable's folder
-            string exeFolder = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            if (!File.Exists(exeFolder + "\\junctions.db")) {
-                SQLiteConnection.CreateFile(exeFolder + "\\junctions.db");
+            if (!File.Exists(GetExeFolder() + "\\junctions.db")) {
+                SQLiteConnection.CreateFile(GetExeFolder() + "\\junctions.db");
             }
             //Create the table in the database, if it doesn't exist already
             SQLiteManager.ExecuteSQLiteCommand("CREATE TABLE IF NOT EXISTS junctions (origin VARCHAR(255), target VARCHAR(255));");
@@ -84,6 +83,29 @@ namespace JunctionManager {
                 string dest = Path.Combine(destFolder, name);
                 CopyFolder(folder, dest);
             }
+        }
+
+        static public void Log(string text) {
+            string path = GetExeFolder() + "\\junction.log.txt";
+            if (!File.Exists(path)) {
+                using (StreamWriter swriter = new StreamWriter(path, false)) {
+                    swriter.WriteLine(text);
+                    return;
+                }
+            }
+            string temp;
+            using (StreamReader sreader = new StreamReader(path)) {
+                temp = sreader.ReadToEnd();
+            }
+            File.Delete(path);
+            using (StreamWriter swriter = new StreamWriter(path, false)) {
+                temp = DateTime.Now + " " + text + Environment.NewLine + temp;
+                swriter.Write(temp);
+            }
+        }
+
+        static public string GetExeFolder() {
+            return Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
     }
 }

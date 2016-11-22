@@ -8,6 +8,8 @@ namespace JunctionManager {
             //Copy folder and delete the original folder (essentially a move"
             Program.CopyFolder(origin, target);
             Directory.Delete(origin, true);
+
+            Program.Log("INFO: Moved " + origin + " to " + target);
             //Create a junction at the original location pointing to the new location
             JunctionPoint.Create(origin, target, true);
             //Update the SQLite database with the new junction created
@@ -22,6 +24,7 @@ namespace JunctionManager {
             Directory.Delete(target, true);
             //Update the SQLite database with the removal of the junction
             SQLiteManager.RemoveJunction(origin);
+            Program.Log("INFO: Moved " + target + " to " + origin);
         }
     }
 }

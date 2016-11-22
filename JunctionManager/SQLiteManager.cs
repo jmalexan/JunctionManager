@@ -24,12 +24,14 @@ namespace JunctionManager {
         {
             ExecuteSQLiteCommand("DELETE FROM junctions WHERE origin = '" + origin + "';");
             CloseConnection();
+            Program.Log("INFO: Delete junction at " + origin);
         }
 
         public static void AddJunction(string origin, string target)
         {
-            SQLiteManager.ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + origin + "', '" + target + "');");
-            SQLiteManager.CloseConnection();
+            ExecuteSQLiteCommand("INSERT INTO junctions VALUES ('" + origin + "', '" + target + "');");
+            CloseConnection();
+            Program.Log("INFO: Add junction at " + origin + " that points to " + target);
         }
 
         public static void CloseConnection() {

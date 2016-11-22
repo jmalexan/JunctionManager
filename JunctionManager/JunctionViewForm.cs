@@ -35,10 +35,12 @@ namespace JunctionManager {
                     if (Directory.Exists(origin)) {
                         MessageBox.Show("The junction at " + origin + " that pointed to " + target + " has been replaced by a folder by the same name.  If you moved the folder back yourself this is fine, otherwise you might wanna look into this", "Junction is now a folder", MessageBoxButtons.OK);
                         sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                        Program.Log("WARNING: Junction at " + origin + " that pointed to " + target + " replaced by a folder with the same name");
                         continue;
                     } else {
                         MessageBox.Show("The junction at " + origin + " that pointed to " + target + " is not there, it could have been moved or deleted.", "Missing junction", MessageBoxButtons.OK);
                         sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                        Program.Log("WARNING: Junction at " + origin + " that pointed to " + target + " missing");
                         continue;
                     }
                     
@@ -48,11 +50,13 @@ namespace JunctionManager {
                     MessageBox.Show("The junction at " + origin + " has changed targets from " + target + " to " + realTarget + ".", "Moved junction target", MessageBoxButtons.OK);
                     sqlCommandQueue.Add("UPDATE junctions SET target = '" + realTarget + "' WHERE origin = '" + origin + "';");
                     target = realTarget;
+                    Program.Log("WARNING: Junction at " + origin + " is now pointing to " + realTarget + ", was pointing to " + target);
                 }
                 if (!Directory.Exists(realTarget)) {
                     MessageBox.Show("The folder at " + target + " is missing, the junction " + origin + " pointed to it.", "Folder missing", MessageBoxButtons.OK);
                     JunctionPoint.Delete(origin);
                     sqlCommandQueue.Add("DELETE FROM junctions WHERE origin = '" + origin + "';");
+                    Program.Log("WARNING: " + target + " is missing, pointed to by junction at " + origin);
                 }
             }
             SQLiteManager.CloseConnection();
@@ -106,6 +110,14 @@ namespace JunctionManager {
         private void createJunctionToolStripMenuItem_Click(object sender, EventArgs e) {
             (new CreateForm()).ShowDialog();
             refreshDataGrid();
+        }
+
+        private void showLogToolStripMenuItem_Click(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start(Program.GetExeFolder() + "\\junction.log.txt");
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+            (new AboutForm()).ShowDialog();
         }
     }
 }
