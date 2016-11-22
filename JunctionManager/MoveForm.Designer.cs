@@ -86,6 +86,7 @@
             this.abortButton.TabIndex = 8;
             this.abortButton.Text = "Abort";
             this.abortButton.UseVisualStyleBackColor = true;
+            this.abortButton.Click += new System.EventHandler(this.abortButton_Click);
             // 
             // confirmButton
             // 
@@ -101,6 +102,7 @@
             // 
             // MoveForm
             // 
+            this.AcceptButton = this.confirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 128);

@@ -83,7 +83,7 @@ namespace JunctionManager {
                 moveButton.Enabled = false;
             } else {
                 restoreButton.Enabled = true;
-                moveButton.Enabled = false;
+                moveButton.Enabled = true;
             }
         }
 
@@ -124,6 +124,7 @@ namespace JunctionManager {
 
         private void button1_Click(object sender, EventArgs e) {
             (new MoveForm(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString())).ShowDialog();
+            refreshDataGrid();
         }
     }
 }

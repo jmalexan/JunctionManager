@@ -1,19 +1,14 @@
 ﻿using Monitor.Core.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JunctionManager {
     public partial class CreateForm : Form {
         public CreateForm() {
             InitializeComponent();
+
+            ActiveControl = createButton;
         }
 
         private void button1_Click(object sender, EventArgs e) {
