@@ -1,6 +1,17 @@
 # JunctionManager
 A tool for pushing folders to another drive and linking them with junctions, and managing those junctions.
 
+# DISCLAIMER:
+Use this tool responsibly. This tool will copy a folder to a new location and delete the original folder.
+I am not responsible for any data possibly lost with this tool.
+
+The tool itself has never lost any data, but in the extreme case it does, simply create an issue for it here on GitHub describing what happened and I can work to fix the problem.
+
+# WARNINGS:
+- If you want to move a folder moved with Junction Manager, move it using the move button in the main window
+	- If you move it yourself, the junction will still be pointing to where the folder was, and your link will be broken
+- If you accidentally delete a junction, you will need to recreate it yourself using the "Create Junction" button in the main window
+
 Instructions:
 - Open the application shortcut in the start menu (search "Junction Manager") to open the main app window.
 	- View the list of junctions made by Junction Manager, and move them back by clicking on them and clicking restore
