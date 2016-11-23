@@ -12,6 +12,10 @@ The tool itself has never lost any data, but in the extreme case it does, simply
 	- If you move it yourself, the junction will still be pointing to where the folder was, and your link will be broken
 - If you accidentally delete a junction, you will need to recreate it yourself using the "Create Junction" button in the main window
 
+# Releases:
+
+Find the most recent releases here: https://github.com/notdisliked/JunctionManager/releases
+
 # Instructions:
 - Open the application shortcut in the start menu (search "Junction Manager") to open the main app window.
 	- View the list of junctions made by Junction Manager, and move them back by clicking on them and clicking restore
