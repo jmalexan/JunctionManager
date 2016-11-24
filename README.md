@@ -24,3 +24,7 @@ Find the most recent releases here: https://github.com/notdisliked/JunctionManag
 - Right click on a folder and click "Switch drives" to move it to the folder specified in the config, with sub directories matching where its saved on the main drive.
 - Right click on a junction (even one not made by Junction Manager, such as those made my SteamMover) and click "Switch drives" to move it back to the original folder location
 - Right click on a folder moved and linked by a junction (created by Junction Manager) to move it back to where it was
+
+Uses code written by jeff.brown from codeproject.com
+
+Copyright 2016, Jonathan Alexander, All rights reserved.

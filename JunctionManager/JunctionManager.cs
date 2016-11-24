@@ -1,4 +1,10 @@
-﻿using Monitor.Core.Utilities;
+﻿/*
+ * This code is under the MIT License
+ * 
+ * Copyright 2016, Jonathan Alexander, All rights reserved
+ */
+
+using Monitor.Core.Utilities;
 using System.IO;
 
 namespace JunctionManager {

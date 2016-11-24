@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * This code is under the MIT License
+ * 
+ * Copyright 2016, Jonathan Alexander, All rights reserved
+ */
+
+using System;
 using System.Data.SQLite;
 using System.IO;
 using System.Threading;

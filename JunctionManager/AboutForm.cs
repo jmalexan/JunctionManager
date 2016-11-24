@@ -1,4 +1,10 @@
-﻿using Microsoft.Win32;
+﻿/*
+ * This code is under the MIT License
+ * 
+ * Copyright 2016, Jonathan Alexander, All rights reserved
+ */
+
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
